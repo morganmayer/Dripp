@@ -1,0 +1,93 @@
+---
+data:
+    feature_path: df_spectra.csv
+    id_path: df_props_id.csv
+    split_path: df_split.csv
+    target_col_name: MW
+    index_col_name: name
+    spectra: True
+    export_filtered: False
+    blend_additives: ["farnesane", "pinane", "RJ4", "pmenthane", "F24"]
+    plot_quality_dpi: 800
+    pres_settings: True
+    plot:
+        # - 3D spectra
+        # - 2D spectra
+        - overall distribution
+        - Kfold distribution
+
+cleaning:
+    pre_split_cleaning:
+      nan: "remove example"
+      baseline_correction: True
+    # remove_range:
+    #     - [1700, 2300]
+    #     - [3800, 4000]
+    post_split_cleaning:
+      normalize: overall min max
+
+validation:
+    # split: random
+    # holdout_fraction: 0.2
+    split:
+      split_col: split
+    parameters_file: med_search.yaml
+    Kfold:
+      nsplits: 10
+      scoring: RMSE
+    random_seed: 42
+
+uncertainty:
+    method_names:
+        - "K-means (5)"
+    methods:
+        - clustering:
+            type: Kmeans
+            number: 5
+
+transformations:
+    transform_names:
+        - "No transform"
+        - "Lasso reduced"
+        - "Lasso Pearson reduced (0.95)"
+        - "Lasso Pearson reduced (0.90)"
+        - "Lasso Pearson reduced (0.85)"
+        - "Lasso Pearson reduced (0.80)"
+        - "Lasso Pearson reduced (0.75)"
+        - "Lasso Pearson reduced (0.70)"
+
+    feature_transformations:
+        - "None"
+        - pearson_reduced:
+            max_corr: 1.1
+        - pearson_reduced:
+            max_corr: 0.95
+            plot_corr: False
+        - pearson_reduced:
+            max_corr: 0.9
+            plot_corr: False
+        - pearson_reduced:
+            max_corr: 0.85
+            plot_corr: False
+        - pearson_reduced:
+            max_corr: 0.8
+            plot_corr: False
+        - pearson_reduced:
+            max_corr: 0.75
+            plot_corr: False
+        - pearson_reduced:
+            max_corr: 0.7
+            plot_corr: False
+models:
+   # - Baseline_Average
+   - Lasso
+   # - ElasticNet
+   # - Ridge
+   - LinearRegression
+   # - PLS
+   # - MLPRegressor
+   # - DecisionTree
+   # - RandomForest
+   # - AdaBoost
+   # - KNN
+  # - TPOT
