@@ -1,0 +1,12 @@
+numpy
+scipy
+pandas
+scikit-learn
+joblib
+pytorch
+matplotlib
+seaborn
+
+conda install -c anaconda yaml
+
+conda install -c conda-forge tpot
