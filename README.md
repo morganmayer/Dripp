@@ -21,27 +21,6 @@ Creates data visualizations of property and spectra patterns with whole dataset.
 
 ## Folders and organization
 
-### data
-
-#### spectra
-raw spectra csv files for real experimental FTIR spectra for neat and blend fuels.
-
-#### interpolated_spectra
-artificial spectra created from make_artificial_spectra.ipynb
-
-#### interpolated_spectra_analysis
-
-contains csv files of R2 correlation fits of polyfits at each wavenumber and percent differences in absorbance agreement for artificial spectra made at compositions there is real spectra for. This is to analyze the performance of the polyfit method to synthesize FTIR spectra. Plots are stored in data/interpolated_spectra_analysis.
-
-### plots
-
-#### spectra_plots
-contains plots of all spectra real and artificial.
-
-#### interpolated_spectra_analysis
-
-contains csv files of R2 correlation fits of polyfits at each wavenumber and percent differences in absorbance agreement for artificial spectra made at compositions there is real spectra for. This is to analyze the performance of the polyfit method to synthesize FTIR spectra. Plots of this data is stored in data/interpolated_spectra_analysis.
-
 ### input_files
 
 Contains input files in yaml format for model comparison runs.
